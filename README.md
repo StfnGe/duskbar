@@ -59,8 +59,8 @@ tweaked there as well.
 ### Build & run
 
 ```powershell
-git clone https://gitlab.com/stfnge/taskbar-dimmer.git
-cd taskbar-dimmer
+git clone https://github.com/StfnGe/duskbar.git
+cd duskbar
 dotnet build -c Release
 .\bin\Release\net10.0-windows\Duskbar.exe
 ```
@@ -113,3 +113,8 @@ Copy `publish\Duskbar.exe` wherever you like, run it once and enable **Start wit
 - Hide taskbar elements you don't need (Widgets, search box, Task View)
 - Keep your monitor's panel care features enabled (pixel shift, pixel refresh, logo/taskbar detection)
 - Let the monitor turn off when idle instead of using a screensaver
+
+## Credits
+
+Duskbar, including its code, icon and this README, was created with the help of
+[Claude](https://claude.com/claude-code) by Anthropic.

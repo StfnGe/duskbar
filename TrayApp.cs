@@ -42,15 +42,11 @@ internal sealed class TrayApp : ApplicationContext
 
     public TrayApp()
     {
+        Strings.Language = _settings.Language;
         _icon = CreateIcon();
-        _tray = new NotifyIcon
-        {
-            Icon = _icon,
-            Text = "Taskbar Dimmer",
-            Visible = true,
-            ContextMenuStrip = BuildMenu(),
-        };
+        _tray = new NotifyIcon { Icon = _icon, Visible = true };
         _tray.DoubleClick += (_, _) => SetEnabled(!_settings.Enabled);
+        ApplyLanguage();
 
         _timer.Tick += (_, _) => Tick();
         _timer.Start();
@@ -60,17 +56,17 @@ internal sealed class TrayApp : ApplicationContext
     {
         var menu = new ContextMenuStrip();
 
-        var enabled = new ToolStripMenuItem("Aktiv") { CheckOnClick = false };
+        var enabled = new ToolStripMenuItem(Strings.T("Active"));
         enabled.Click += (_, _) => SetEnabled(!_settings.Enabled);
 
-        var mode = new ToolStripMenuItem("Modus");
-        var modeIdle = new ToolStripMenuItem("Bei Inaktivität dimmen");
+        var mode = new ToolStripMenuItem(Strings.T("Mode"));
+        var modeIdle = new ToolStripMenuItem(Strings.T("ModeIdle"));
         modeIdle.Click += (_, _) => { _settings.AlwaysDim = false; _settings.Save(); };
-        var modeAlways = new ToolStripMenuItem("Dauerhaft gedimmt");
+        var modeAlways = new ToolStripMenuItem(Strings.T("ModeAlways"));
         modeAlways.Click += (_, _) => { _settings.AlwaysDim = true; _settings.Save(); };
         mode.DropDownItems.AddRange(new ToolStripItem[] { modeIdle, modeAlways });
 
-        var level = new ToolStripMenuItem("Abdunkelung");
+        var level = new ToolStripMenuItem(Strings.T("DimLevel"));
         foreach (int pct in new[] { 50, 70, 85, 95, 100 })
         {
             var item = new ToolStripMenuItem($"{pct} %") { Tag = pct / 100.0 };
@@ -78,21 +74,30 @@ internal sealed class TrayApp : ApplicationContext
             level.DropDownItems.Add(item);
         }
 
-        var delay = new ToolStripMenuItem("Verzögerung");
+        var delay = new ToolStripMenuItem(Strings.T("Delay"));
         foreach (int s in new[] { 2, 5, 10, 30, 60 })
         {
-            var item = new ToolStripMenuItem($"{s} Sekunden") { Tag = s };
+            var item = new ToolStripMenuItem(Strings.T("Seconds", s)) { Tag = s };
             item.Click += (_, _) => { _settings.DelaySeconds = (int)item.Tag!; _settings.Save(); };
             delay.DropDownItems.Add(item);
         }
 
-        var autostart = new ToolStripMenuItem("Mit Windows starten");
+        var autostart = new ToolStripMenuItem(Strings.T("Autostart"));
         autostart.Click += (_, _) => SetAutostart(!IsAutostart());
 
-        var exit = new ToolStripMenuItem("Beenden");
+        // Language names are shown in their own language so they are always recognizable.
+        var language = new ToolStripMenuItem(Strings.T("Language"));
+        foreach (var (code, name) in new[] { (Strings.English, "English"), (Strings.German, "Deutsch") })
+        {
+            var item = new ToolStripMenuItem(name) { Tag = code, Checked = code == _settings.Language };
+            item.Click += (_, _) => SetLanguage((string)item.Tag!);
+            language.DropDownItems.Add(item);
+        }
+
+        var exit = new ToolStripMenuItem(Strings.T("Exit"));
         exit.Click += (_, _) => ExitThread();
 
-        menu.Items.AddRange(new ToolStripItem[] { enabled, mode, level, delay, new ToolStripSeparator(), autostart, new ToolStripSeparator(), exit });
+        menu.Items.AddRange(new ToolStripItem[] { enabled, mode, level, delay, new ToolStripSeparator(), autostart, language, new ToolStripSeparator(), exit });
 
         menu.Opening += (_, _) =>
         {
@@ -114,8 +119,34 @@ internal sealed class TrayApp : ApplicationContext
     {
         _settings.Enabled = value;
         _settings.Save();
-        _tray.Text = value ? "Taskbar Dimmer" : "Taskbar Dimmer (pausiert)";
+        UpdateTooltip();
     }
+
+    private void SetLanguage(string language)
+    {
+        if (language == _settings.Language)
+            return;
+        _settings.Language = language;
+        _settings.Save();
+        Strings.Language = language;
+        ApplyLanguage();
+    }
+
+    /// <summary>Rebuilds the context menu and tooltip in the current language.</summary>
+    private void ApplyLanguage()
+    {
+        var old = _tray.ContextMenuStrip;
+        _tray.ContextMenuStrip = BuildMenu();
+        // The old menu may still be closing when a language item was clicked.
+        if (old is { IsHandleCreated: true })
+            old.BeginInvoke(old.Dispose);
+        else
+            old?.Dispose();
+        UpdateTooltip();
+    }
+
+    private void UpdateTooltip() =>
+        _tray.Text = Strings.T(_settings.Enabled ? "Tooltip" : "TooltipPaused");
 
     private void Tick()
     {

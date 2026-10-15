@@ -26,21 +26,23 @@ Startmenü, ist sie sofort wieder voll da.
 - 🎬 **Vollbild-Erkennung**: Bei Videos und Spielen wird nichts überlagert
 - 🎚️ **Stufen**: 50 %, 70 %, 85 %, 95 % oder 100 % Abdunkelung
 - 🚀 **Autostart** mit Windows per Klick
+- 🌐 **Englisch & Deutsch**: Standard ist Englisch, umschaltbar im Tray-Menü
 - 🪶 Kein Installer, keine Admin-Rechte, nur eine Tray-App
 
 ## Bedienung
 
 Nach dem Start erscheint das Symbol im Infobereich der Taskleiste.
 
-| Aktion | Wirkung |
+| Menüeintrag (EN / DE) | Wirkung |
 |---|---|
 | **Doppelklick** auf das Symbol | Dimmer ein-/ausschalten |
-| **Rechtsklick → Aktiv** | Dimmer ein-/ausschalten |
-| **Rechtsklick → Modus** | *Bei Inaktivität dimmen* oder *Dauerhaft gedimmt* |
-| **Rechtsklick → Abdunkelung** | Stärke der Abdunkelung (50–100 %) |
-| **Rechtsklick → Verzögerung** | Wartezeit bis zum Abdunkeln (nur im Inaktivitäts-Modus) |
-| **Rechtsklick → Mit Windows starten** | Autostart an/aus (`HKCU\...\Run`) |
-| **Rechtsklick → Beenden** | App schließen |
+| **Enabled** / *Aktiv* | Dimmer ein-/ausschalten |
+| **Mode** / *Modus* | *Dim when idle / Bei Inaktivität dimmen* oder *Always dimmed / Dauerhaft gedimmt* |
+| **Dim level** / *Abdunkelung* | Stärke der Abdunkelung (50–100 %) |
+| **Delay** / *Verzögerung* | Wartezeit bis zum Abdunkeln (nur im Inaktivitäts-Modus) |
+| **Start with Windows** / *Mit Windows starten* | Autostart an/aus (`HKCU\...\Run`) |
+| **Language** / *Sprache* | English oder Deutsch (Standard: English) |
+| **Exit** / *Beenden* | App schließen |
 
 Die Einstellungen werden in `%APPDATA%\TaskbarDimmer\settings.json` gespeichert. Dort lassen sich zusätzlich
 die Fade-Zeiten (`FadeOutMs`, `FadeInMs`) anpassen.
@@ -102,6 +104,7 @@ und im Tray-Menü **Mit Windows starten** aktivieren.
 ├── TrayApp.cs           # Tray-Menü, Erkennung von Aktivität & Vollbild, Fade-Logik
 ├── OverlayForm.cs       # Das abdunkelnde Overlay-Fenster
 ├── Settings.cs          # Einstellungen (JSON in %APPDATA%)
+├── Strings.cs           # UI-Texte Englisch/Deutsch
 ├── Native.cs            # Win32-P/Invoke
 └── TaskbarDimmer.csproj
 ```

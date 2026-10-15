@@ -9,6 +9,9 @@ internal sealed class Settings
     /// <summary>Keep the taskbar dimmed all the time, even while the mouse is over it.</summary>
     public bool AlwaysDim { get; set; }
 
+    /// <summary>UI language: "en" (default) or "de".</summary>
+    public string Language { get; set; } = Strings.English;
+
     /// <summary>Overlay opacity when dimmed (0 = invisible, 1 = fully black).</summary>
     public double DimLevel { get; set; } = 0.85;
 

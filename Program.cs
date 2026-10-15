@@ -1,11 +1,11 @@
-namespace TaskbarDimmer;
+namespace Duskbar;
 
 internal static class Program
 {
     [STAThread]
     private static void Main()
     {
-        using var mutex = new Mutex(true, "TaskbarDimmer_SingleInstance", out bool created);
+        using var mutex = new Mutex(true, "Duskbar_SingleInstance", out bool created);
         if (!created)
             return;
 

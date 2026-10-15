@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.Win32;
-using static TaskbarDimmer.Native;
+using static Duskbar.Native;
 
-namespace TaskbarDimmer;
+namespace Duskbar;
 
 /// <summary>
 /// Tray application that dims every taskbar after a period of inactivity and
@@ -12,7 +12,7 @@ internal sealed class TrayApp : ApplicationContext
 {
     private const int TickMs = 30;
     private const string RunKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
-    private const string AppName = "TaskbarDimmer";
+    private const string AppName = "Duskbar";
 
     // Foreground windows that mean "the user is interacting with the taskbar / shell".
     private static readonly HashSet<string> ShellClasses = new(StringComparer.OrdinalIgnoreCase)
@@ -291,7 +291,7 @@ internal sealed class TrayApp : ApplicationContext
     /// <summary>Loads the embedded app icon in the size the tray expects at the current DPI.</summary>
     private static Icon CreateIcon()
     {
-        using var stream = typeof(TrayApp).Assembly.GetManifestResourceStream("TaskbarDimmer.app.ico")!;
+        using var stream = typeof(TrayApp).Assembly.GetManifestResourceStream("Duskbar.app.ico")!;
         return new Icon(stream, SystemInformation.SmallIconSize);
     }
 

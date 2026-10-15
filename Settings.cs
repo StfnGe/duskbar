@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace TaskbarDimmer;
+namespace Duskbar;
 
 internal sealed class Settings
 {
@@ -26,7 +26,7 @@ internal sealed class Settings
 
     private static readonly string FilePath = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        "TaskbarDimmer", "settings.json");
+        "Duskbar", "settings.json");
 
     public static Settings Load()
     {

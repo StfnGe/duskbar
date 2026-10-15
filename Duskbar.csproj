@@ -7,13 +7,13 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
-    <AssemblyName>TaskbarDimmer</AssemblyName>
-    <RootNamespace>TaskbarDimmer</RootNamespace>
+    <AssemblyName>Duskbar</AssemblyName>
+    <RootNamespace>Duskbar</RootNamespace>
     <ApplicationIcon>assets\app.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="assets\app.ico" LogicalName="TaskbarDimmer.app.ico" />
+    <EmbeddedResource Include="assets\app.ico" LogicalName="Duskbar.app.ico" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-namespace TaskbarDimmer;
+namespace Duskbar;
 
 /// <summary>UI texts in English (default) and German.</summary>
 internal static class Strings
@@ -10,8 +10,8 @@ internal static class Strings
 
     private static readonly Dictionary<string, (string En, string De)> Texts = new()
     {
-        ["Tooltip"] = ("Taskbar Dimmer", "Taskbar Dimmer"),
-        ["TooltipPaused"] = ("Taskbar Dimmer (paused)", "Taskbar Dimmer (pausiert)"),
+        ["Tooltip"] = ("Duskbar", "Duskbar"),
+        ["TooltipPaused"] = ("Duskbar (paused)", "Duskbar (pausiert)"),
         ["Active"] = ("Enabled", "Aktiv"),
         ["Mode"] = ("Mode", "Modus"),
         ["ModeIdle"] = ("Dim when idle", "Bei Inaktivität dimmen"),

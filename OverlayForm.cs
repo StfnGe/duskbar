@@ -1,6 +1,6 @@
-using static TaskbarDimmer.Native;
+using static Duskbar.Native;
 
-namespace TaskbarDimmer;
+namespace Duskbar;
 
 /// <summary>
 /// Black, click-through, topmost window laid over a single taskbar.

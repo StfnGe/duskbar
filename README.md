@@ -1,117 +1,115 @@
 <div align="center">
-  <img src="assets/icon.png" width="128" alt="Taskbar Dimmer Icon">
+  <img src="assets/icon.png" width="128" alt="Duskbar icon">
 
-  # Taskbar Dimmer
+  # Duskbar
 
-  **Schützt OLED-Monitore vor eingebrannter Taskleiste, ohne sie auszublenden.**
+  **Protects OLED monitors from taskbar burn-in, without hiding the taskbar.**
 </div>
 
 ---
 
-Die Windows-Taskleiste ist eines der hartnäckigsten statischen Bildelemente und damit ein typischer
-Kandidat für Burn-in auf OLED-Monitoren. Die automatische Ausblendung von Windows hilft zwar, ist im Alltag
-aber oft lästig.
+The Windows taskbar is one of the most persistent static elements on screen and a classic cause of burn-in on
+OLED monitors. Windows' auto-hide helps, but it gets in the way in everyday use.
 
-**Taskbar Dimmer** legt stattdessen eine schwarze, halbtransparente und klick-durchlässige Fläche über die
-Taskleiste, sobald sie nicht benutzt wird. Fährst du mit der Maus hin, drückst die Win-Taste oder öffnest das
-Startmenü, ist sie sofort wieder voll da.
+**Duskbar** puts a black, semi-transparent, click-through overlay on top of the taskbar whenever you're not
+using it. Move the mouse to it, press the Windows key or open the Start menu, and it's back at full brightness
+instantly.
 
 ## Features
 
-- 🌙 **Automatisches Abdunkeln** nach einstellbarer Inaktivitätszeit (2–60 s)
-- 🔒 **Modus „Dauerhaft gedimmt“**: Taskleiste bleibt immer abgedunkelt, auch unter der Maus
-- ⚡ **Sofortiges Einblenden** bei Mauskontakt, Win-Taste, Startmenü, Suche, Infobereich oder Fenstervorschau
-- 🖱️ **Klick-durchlässig**: Die Taskleiste bleibt auch im gedimmten Zustand voll bedienbar
-- 🖥️ **Multi-Monitor**: Jede Taskleiste wird separat behandelt
-- 🎬 **Vollbild-Erkennung**: Bei Videos und Spielen wird nichts überlagert
-- 🎚️ **Stufen**: 50 %, 70 %, 85 %, 95 % oder 100 % Abdunkelung
-- 🚀 **Autostart** mit Windows per Klick
-- 🌐 **Englisch & Deutsch**: Standard ist Englisch, umschaltbar im Tray-Menü
-- 🪶 Kein Installer, keine Admin-Rechte, nur eine Tray-App
+- 🌙 **Dims automatically** after a configurable idle time (2–60 s)
+- 🔒 **"Always dimmed" mode**: the taskbar stays dimmed at all times, even under the mouse
+- ⚡ **Instant reveal** on mouse contact, Windows key, Start menu, search, system tray or window previews
+- 🖱️ **Click-through**: the taskbar stays fully usable while dimmed
+- 🖥️ **Multi-monitor**: every taskbar is handled separately
+- 🎬 **Fullscreen detection**: nothing is overlaid while videos or games run fullscreen
+- 🎚️ **Dim levels**: 50 %, 70 %, 85 %, 95 % or 100 %
+- 🚀 **Start with Windows** in one click
+- 🌐 **English & German** UI (English by default, switchable in the tray menu)
+- 🪶 No installer, no admin rights, just a tray app
 
-## Bedienung
+## Usage
 
-Nach dem Start erscheint das Symbol im Infobereich der Taskleiste.
+After launch, the Duskbar icon appears in the system tray. Right-click it for the menu:
 
-| Menüeintrag (EN / DE) | Wirkung |
+| Menu item | What it does |
 |---|---|
-| **Doppelklick** auf das Symbol | Dimmer ein-/ausschalten |
-| **Enabled** / *Aktiv* | Dimmer ein-/ausschalten |
-| **Mode** / *Modus* | *Dim when idle / Bei Inaktivität dimmen* oder *Always dimmed / Dauerhaft gedimmt* |
-| **Dim level** / *Abdunkelung* | Stärke der Abdunkelung (50–100 %) |
-| **Delay** / *Verzögerung* | Wartezeit bis zum Abdunkeln (nur im Inaktivitäts-Modus) |
-| **Start with Windows** / *Mit Windows starten* | Autostart an/aus (`HKCU\...\Run`) |
-| **Language** / *Sprache* | English oder Deutsch (Standard: English) |
-| **Exit** / *Beenden* | App schließen |
+| **Double-click** the icon | Turn dimming on/off |
+| **Enabled** | Turn dimming on/off |
+| **Mode** | *Dim when idle* or *Always dimmed* |
+| **Dim level** | How dark the taskbar gets (50–100 %) |
+| **Delay** | Idle time before dimming (only in *Dim when idle* mode) |
+| **Start with Windows** | Toggle autostart (`HKCU\...\Run`) |
+| **Language** | English or Deutsch |
+| **Exit** | Quit Duskbar |
 
-Die Einstellungen werden in `%APPDATA%\TaskbarDimmer\settings.json` gespeichert. Dort lassen sich zusätzlich
-die Fade-Zeiten (`FadeOutMs`, `FadeInMs`) anpassen.
+Settings are stored in `%APPDATA%\Duskbar\settings.json`. The fade durations (`FadeOutMs`, `FadeInMs`) can be
+tweaked there as well.
 
-> **Tipp:** Bei 85–100 % sind Uhr und Benachrichtigungs-Badges nur sichtbar, wenn du die Taskleiste berührst.
-> 50–70 % ist ein guter Kompromiss zwischen Lesbarkeit und Schutz.
+> **Tip:** At 85–100 % the clock and notification badges are only visible when you touch the taskbar.
+> 50–70 % is a good trade-off between readability and protection.
 
 ## Installation
 
-### Voraussetzungen
+### Requirements
 
 - Windows 10 / 11
-- [.NET 10 SDK](https://dotnet.microsoft.com/download) zum Bauen (bzw. .NET 10 Desktop Runtime zum Ausführen)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download) to build (or the .NET 10 Desktop Runtime to run)
 
-### Bauen & starten
+### Build & run
 
 ```powershell
 git clone https://gitlab.com/stfnge/taskbar-dimmer.git
 cd taskbar-dimmer
 dotnet build -c Release
-.\bin\Release\net10.0-windows\TaskbarDimmer.exe
+.\bin\Release\net10.0-windows\Duskbar.exe
 ```
 
-### Einzelne EXE erzeugen (ohne installierte Runtime)
+### Single-file EXE (no runtime required)
 
 ```powershell
 dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o publish
 ```
 
-Die fertige `publish\TaskbarDimmer.exe` kann an einen beliebigen Ort kopiert werden. Anschließend einmal starten
-und im Tray-Menü **Mit Windows starten** aktivieren.
+Copy `publish\Duskbar.exe` wherever you like, run it once and enable **Start with Windows** in the tray menu.
 
-## Funktionsweise
+## How it works
 
 ```
-┌──────────────────────────── Bildschirm ────────────────────────────┐
+┌────────────────────────────── Screen ──────────────────────────────┐
 │                                                                    │
 │                                                                    │
 ├────────────────────────────────────────────────────────────────────┤
-│ ███████████  Overlay (schwarz, Alpha 0–100 %, klick-durchlässig)   │ ← TaskbarDimmer
-│ ⊞ 🔍 📁 🌐 …                                         🔊 📶 12:34   │ ← Windows-Taskleiste
+│ ███████████  Overlay (black, alpha 0–100 %, click-through)         │ ← Duskbar
+│ ⊞ 🔍 📁 🌐 …                                         🔊 📶 12:34   │ ← Windows taskbar
 └────────────────────────────────────────────────────────────────────┘
 ```
 
-- Pro Taskleiste (`Shell_TrayWnd`, `Shell_SecondaryTrayWnd`) wird ein randloses Fenster mit
-  `WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_TOPMOST | WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW` erzeugt.
-  Es lässt alle Mausklicks durch, taucht nicht in Alt+Tab auf und stiehlt nie den Fokus.
-- Ein Timer (30 ms) prüft Mausposition, Win-Taste und Vordergrundfenster und blendet die Transparenz
-  weich zwischen 0 und der gewählten Stufe über.
-- Ist das Vordergrundfenster vollbildig auf dem Monitor einer Taskleiste, wird das Overlay dort ausgeblendet.
+- For every taskbar (`Shell_TrayWnd`, `Shell_SecondaryTrayWnd`) Duskbar creates a borderless window with
+  `WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_TOPMOST | WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW`.
+  It passes all mouse clicks through, doesn't show up in Alt+Tab and never steals focus.
+- A 30 ms timer checks the cursor position, the Windows key and the foreground window, and smoothly fades the
+  overlay between 0 and the selected dim level.
+- If the foreground window covers the whole monitor a taskbar is on, the overlay on that monitor is hidden.
 
-## Projektstruktur
+## Project structure
 
 ```
 ├── assets/
-│   ├── app.ico          # App-/Tray-Icon (16–256 px)
-│   └── icon.png         # Vorschau für diese README
-├── Program.cs           # Einstiegspunkt, Single-Instance-Mutex
-├── TrayApp.cs           # Tray-Menü, Erkennung von Aktivität & Vollbild, Fade-Logik
-├── OverlayForm.cs       # Das abdunkelnde Overlay-Fenster
-├── Settings.cs          # Einstellungen (JSON in %APPDATA%)
-├── Strings.cs           # UI-Texte Englisch/Deutsch
-├── Native.cs            # Win32-P/Invoke
-└── TaskbarDimmer.csproj
+│   ├── app.ico          # App and tray icon (16–256 px)
+│   └── icon.png         # Preview for this README
+├── Program.cs           # Entry point, single-instance mutex
+├── TrayApp.cs           # Tray menu, activity & fullscreen detection, fade logic
+├── OverlayForm.cs       # The dimming overlay window
+├── Settings.cs          # Settings (JSON in %APPDATA%)
+├── Strings.cs           # UI texts (English/German)
+├── Native.cs            # Win32 P/Invoke
+└── Duskbar.csproj
 ```
 
-## Weitere Tipps gegen OLED-Burn-in
+## More tips against OLED burn-in
 
-- Dunkles Windows-Design und eine nicht transparente, dunkle Taskleiste verwenden
-- Unnötige Taskleisten-Elemente (Widgets, Suchfeld, Task-View) ausblenden
-- Pflegefunktionen des Monitors aktiv lassen (Pixel Shift, Pixel Refresh, Logo-/Taskleisten-Erkennung)
-- Monitor bei Inaktivität ausschalten lassen statt Bildschirmschoner
+- Use Windows dark mode and an opaque, dark taskbar
+- Hide taskbar elements you don't need (Widgets, search box, Task View)
+- Keep your monitor's panel care features enabled (pixel shift, pixel refresh, logo/taskbar detection)
+- Let the monitor turn off when idle instead of using a screensaver

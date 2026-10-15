@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace TaskbarDimmer;
+namespace Duskbar;
 
 internal static class Native
 {

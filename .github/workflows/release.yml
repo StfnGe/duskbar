@@ -1,0 +1,36 @@
+name: Release
+
+# Push a tag like "v1.0.0" to build Duskbar.exe and publish it as a GitHub release.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publish single-file EXE
+        shell: pwsh
+        run: |
+          $version = '${{ github.ref_name }}'.TrimStart('v')
+          dotnet publish Duskbar.csproj -c Release -r win-x64 --self-contained `
+            -p:PublishSingleFile=true `
+            -p:EnableCompressionInSingleFile=true `
+            -p:IncludeNativeLibrariesForSelfExtract=true `
+            -p:DebugType=none `
+            -p:Version=$version `
+            -o publish
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: publish/Duskbar.exe
+          generate_release_notes: true

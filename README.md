@@ -49,12 +49,26 @@ tweaked there as well.
 > **Tip:** At 85–100 % the clock and notification badges are only visible when you touch the taskbar.
 > 50–70 % is a good trade-off between readability and protection.
 
-## Installation
+## Download
+
+Grab **`Duskbar.exe`** from the [latest release](https://github.com/StfnGe/duskbar/releases/latest).
+It's a single file with everything included: no installer, no .NET runtime required.
+
+1. Download `Duskbar.exe` and put it somewhere permanent (e.g. `%LOCALAPPDATA%\Duskbar`).
+2. Run it. The icon appears in the system tray.
+3. Right-click the icon → **Start with Windows** to launch it automatically.
+
+> **Windows SmartScreen:** The EXE isn't code-signed, so Windows may show *"Windows protected your PC"*
+> on first launch. Click **More info → Run anyway**.
+
+Requires Windows 10 or 11 (x64).
+
+## Building from source
 
 ### Requirements
 
 - Windows 10 / 11
-- [.NET 10 SDK](https://dotnet.microsoft.com/download) to build (or the .NET 10 Desktop Runtime to run)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
 
 ### Build & run
 
@@ -68,10 +82,18 @@ dotnet build -c Release
 ### Single-file EXE (no runtime required)
 
 ```powershell
-dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o publish
+dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o publish
 ```
 
-Copy `publish\Duskbar.exe` wherever you like, run it once and enable **Start with Windows** in the tray menu.
+### Creating a release
+
+Releases are built by GitHub Actions ([`.github/workflows/release.yml`](.github/workflows/release.yml)).
+Push a version tag and the workflow builds `Duskbar.exe` and attaches it to a new GitHub release:
+
+```powershell
+git tag v1.0.0
+git push github v1.0.0
+```
 
 ## How it works
 
@@ -95,6 +117,8 @@ Copy `publish\Duskbar.exe` wherever you like, run it once and enable **Start wit
 ## Project structure
 
 ```
+├── .github/workflows/
+│   └── release.yml      # Builds Duskbar.exe and publishes a GitHub release on version tags
 ├── assets/
 │   ├── app.ico          # App and tray icon (16–256 px)
 │   └── icon.png         # Preview for this README

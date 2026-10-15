@@ -10,6 +10,9 @@
     <AssemblyName>Duskbar</AssemblyName>
     <RootNamespace>Duskbar</RootNamespace>
     <ApplicationIcon>assets\app.ico</ApplicationIcon>
+    <Version>1.0.0</Version>
+    <Product>Duskbar</Product>
+    <Description>Dims the Windows taskbar to protect OLED monitors from burn-in</Description>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,93 +1,114 @@
-# taskbar-dimmer
+<div align="center">
+  <img src="assets/icon.png" width="128" alt="Taskbar Dimmer Icon">
 
+  # Taskbar Dimmer
 
+  **Schützt OLED-Monitore vor eingebrannter Taskleiste, ohne sie auszublenden.**
+</div>
 
-## Getting started
+---
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Die Windows-Taskleiste ist eines der hartnäckigsten statischen Bildelemente und damit ein typischer
+Kandidat für Burn-in auf OLED-Monitoren. Die automatische Ausblendung von Windows hilft zwar, ist im Alltag
+aber oft lästig.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+**Taskbar Dimmer** legt stattdessen eine schwarze, halbtransparente und klick-durchlässige Fläche über die
+Taskleiste, sobald sie nicht benutzt wird. Fährst du mit der Maus hin, drückst die Win-Taste oder öffnest das
+Startmenü, ist sie sofort wieder voll da.
 
-## Add your files
+## Features
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+- 🌙 **Automatisches Abdunkeln** nach einstellbarer Inaktivitätszeit (2–60 s)
+- 🔒 **Modus „Dauerhaft gedimmt“**: Taskleiste bleibt immer abgedunkelt, auch unter der Maus
+- ⚡ **Sofortiges Einblenden** bei Mauskontakt, Win-Taste, Startmenü, Suche, Infobereich oder Fenstervorschau
+- 🖱️ **Klick-durchlässig**: Die Taskleiste bleibt auch im gedimmten Zustand voll bedienbar
+- 🖥️ **Multi-Monitor**: Jede Taskleiste wird separat behandelt
+- 🎬 **Vollbild-Erkennung**: Bei Videos und Spielen wird nichts überlagert
+- 🎚️ **Stufen**: 50 %, 70 %, 85 %, 95 % oder 100 % Abdunkelung
+- 🚀 **Autostart** mit Windows per Klick
+- 🪶 Kein Installer, keine Admin-Rechte, nur eine Tray-App
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/stfnge/taskbar-dimmer.git
-git branch -M main
-git push -uf origin main
-```
+## Bedienung
 
-## Integrate with your tools
+Nach dem Start erscheint das Symbol im Infobereich der Taskleiste.
 
-* [Set up project integrations](https://gitlab.com/stfnge/taskbar-dimmer/-/settings/integrations)
+| Aktion | Wirkung |
+|---|---|
+| **Doppelklick** auf das Symbol | Dimmer ein-/ausschalten |
+| **Rechtsklick → Aktiv** | Dimmer ein-/ausschalten |
+| **Rechtsklick → Modus** | *Bei Inaktivität dimmen* oder *Dauerhaft gedimmt* |
+| **Rechtsklick → Abdunkelung** | Stärke der Abdunkelung (50–100 %) |
+| **Rechtsklick → Verzögerung** | Wartezeit bis zum Abdunkeln (nur im Inaktivitäts-Modus) |
+| **Rechtsklick → Mit Windows starten** | Autostart an/aus (`HKCU\...\Run`) |
+| **Rechtsklick → Beenden** | App schließen |
 
-## Collaborate with your team
+Die Einstellungen werden in `%APPDATA%\TaskbarDimmer\settings.json` gespeichert. Dort lassen sich zusätzlich
+die Fade-Zeiten (`FadeOutMs`, `FadeInMs`) anpassen.
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+> **Tipp:** Bei 85–100 % sind Uhr und Benachrichtigungs-Badges nur sichtbar, wenn du die Taskleiste berührst.
+> 50–70 % ist ein guter Kompromiss zwischen Lesbarkeit und Schutz.
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### Voraussetzungen
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- Windows 10 / 11
+- [.NET 10 SDK](https://dotnet.microsoft.com/download) zum Bauen (bzw. .NET 10 Desktop Runtime zum Ausführen)
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### Bauen & starten
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+```powershell
+git clone https://gitlab.com/stfnge/taskbar-dimmer.git
+cd taskbar-dimmer
+dotnet build -c Release
+.\bin\Release\net10.0-windows\TaskbarDimmer.exe
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### Einzelne EXE erzeugen (ohne installierte Runtime)
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+```powershell
+dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o publish
+```
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Die fertige `publish\TaskbarDimmer.exe` kann an einen beliebigen Ort kopiert werden. Anschließend einmal starten
+und im Tray-Menü **Mit Windows starten** aktivieren.
 
-## License
-For open source projects, say how it is licensed.
+## Funktionsweise
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+```
+┌──────────────────────────── Bildschirm ────────────────────────────┐
+│                                                                    │
+│                                                                    │
+├────────────────────────────────────────────────────────────────────┤
+│ ███████████  Overlay (schwarz, Alpha 0–100 %, klick-durchlässig)   │ ← TaskbarDimmer
+│ ⊞ 🔍 📁 🌐 …                                         🔊 📶 12:34   │ ← Windows-Taskleiste
+└────────────────────────────────────────────────────────────────────┘
+```
+
+- Pro Taskleiste (`Shell_TrayWnd`, `Shell_SecondaryTrayWnd`) wird ein randloses Fenster mit
+  `WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_TOPMOST | WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW` erzeugt.
+  Es lässt alle Mausklicks durch, taucht nicht in Alt+Tab auf und stiehlt nie den Fokus.
+- Ein Timer (30 ms) prüft Mausposition, Win-Taste und Vordergrundfenster und blendet die Transparenz
+  weich zwischen 0 und der gewählten Stufe über.
+- Ist das Vordergrundfenster vollbildig auf dem Monitor einer Taskleiste, wird das Overlay dort ausgeblendet.
+
+## Projektstruktur
+
+```
+├── assets/
+│   ├── app.ico          # App-/Tray-Icon (16–256 px)
+│   └── icon.png         # Vorschau für diese README
+├── Program.cs           # Einstiegspunkt, Single-Instance-Mutex
+├── TrayApp.cs           # Tray-Menü, Erkennung von Aktivität & Vollbild, Fade-Logik
+├── OverlayForm.cs       # Das abdunkelnde Overlay-Fenster
+├── Settings.cs          # Einstellungen (JSON in %APPDATA%)
+├── Native.cs            # Win32-P/Invoke
+└── TaskbarDimmer.csproj
+```
+
+## Weitere Tipps gegen OLED-Burn-in
+
+- Dunkles Windows-Design und eine nicht transparente, dunkle Taskleiste verwenden
+- Unnötige Taskleisten-Elemente (Widgets, Suchfeld, Task-View) ausblenden
+- Pflegefunktionen des Monitors aktiv lassen (Pixel Shift, Pixel Refresh, Logo-/Taskleisten-Erkennung)
+- Monitor bei Inaktivität ausschalten lassen statt Bildschirmschoner
